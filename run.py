@@ -67,6 +67,14 @@ def update_sales_worksheet(data):
     print("Sales worksheet apdated successfully.\n")
 
 
+def jls_extract_def(surplus_data):
+    return surplus_data
+
+
+def jls_extract_def(surplus_data):
+    return jls_extract_def(surplus_data)
+
+
 def calculate_surplus_data(sales_row):
     """
     Compare sales with stock and calculate the surplus for each item type.
@@ -83,9 +91,23 @@ def calculate_surplus_data(sales_row):
     for stock, sales in zip(stock_row, sales_row):
         surplus = int(stock) - sales
         surplus_data.append(surplus)
-    
-    
-    return surplus_data
+
+
+    return jls_extract_def(surplus_data)
+
+def get_last_5_entries_sales():
+    """
+    Collects collumns of data from sales worksheet, collecting
+    the last 5 entries for each sandwich and returns the data
+    as a list of lists.
+    """
+    sales = SHEET.worksheet("sales")
+
+    columns = []
+    for ind in range(1,7):
+        column = sales.col_values(ind)
+        columns.append(column[-5:])
+    return columns
 
 
 def main():
@@ -100,4 +122,6 @@ def main():
 
 
 print("Welcome to Love sandwiches Data Automation")
-main()
+#main()
+
+sales_columns = get_last_5_entries_sales()
